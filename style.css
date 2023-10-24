@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  --inline: 10px;
+  --block: 0;
+  --duration: 150ms;
+  --padding: 4px;
+  --border: 1px;
+  --radius: 10px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #fff;
+  border-radius: 2px;
+  width: 75%;
+  /* height: 50%; */
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.inner {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  padding: 20px;
+  border-radius: var(--radius);
+}
+
+h2 {
+  margin: 1rem;
+  font-size: 3rem;
+  font-family: "Bebas Neue", cursive;
+}
+
+h2:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: var(--padding);
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--color1), var(--color2));
+  margin-top: 10px;
+}
+
+p {
+  text-align: center;
+}
+
+#joke {
+  margin: 1rem;
+  color: white;
+  font-size: 1.6rem;
+}
+
+.card button {
+  margin: 1rem;
+  display: block;
+  border: 1px solid #fff;
+  padding: 1rem;
+  position: relative;
+  border-radius: var(--radius);
+  /* background: rgba(5, 222, 222, 0.2); */
+  background: rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  font-size: 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.card button:before {
+  content: "";
+  display: block;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  z-index: -1;
+  border-radius: var(--radius);
+  background: linear-gradient(45deg, var(--color2), var(--color1));
+}
+
+.tail {
+  transition: all var(--duration);
+  width: var(--inline);
+  height: var(--block);
+  background: var(--color1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.tail.top {
+  background-image: linear-gradient(to right, var(--color1), var(--color2));
+  height: var(--inline);
+  width: var(--block);
+  transition-delay: calc(var(--duration) * 2);
+}
+
+.tail.right {
+  right: 0;
+  left: unset;
+  background: var(--color2);
+  transition-delay: var(--duration);
+}
+
+.tail.bottom {
+  height: var(--inline);
+  width: var(--block);
+  bottom: 0;
+  right: 0;
+  left: unset;
+  top: unset;
+  background-image: linear-gradient(to right, var(--color1), var(--color2));
+  transition-delay: 0ms;
+}
+
+.tail.left {
+  bottom: 0;
+  top: unset;
+  transition-delay: calc(var(--duration) * 3);
+}
+
+.snake:where(.start, :hover) .tail.top {
+  transition-delay: var(--duration);
+}
+.snake:where(.start, :hover) .tail.right {
+  transition-delay: calc(var(--duration) * 2);
+}
+.snake:where(.start, :hover) .tail.bottom {
+  transition-delay: calc(var(--duration) * 3);
+}
+.snake:where(.start, :hover) .tail.left {
+  transition-delay: 0ms;
+}
+
+.snake {
+  position: relative;
+}
+
+.snake.start .tail {
+  --block: 0;
+}
+.snake:hover .tail {
+  --block: 100%;
+}
