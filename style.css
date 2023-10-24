@@ -163,3 +163,10 @@ p {
 .snake:hover .tail {
   --block: 100%;
 }
+
+/* MEDIA QUERY */
+@media screen and (max-width: 1000px) {
+  .card {
+    width: 90%;
+  }
+}
